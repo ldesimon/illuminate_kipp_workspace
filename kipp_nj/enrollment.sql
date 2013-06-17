@@ -1,3 +1,5 @@
+--prepped 6/17
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -31,10 +33,10 @@ FROM DUAL
 --
 SELECT
              s.Student_Number
-  || :TAB || s.STATE_STUDENTNUMBER
+  || :TAB || ps_customfields.getStudentsCF(s.id, 'SID')
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
-  || :TAB || s.Middle_Name
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
   || :TAB || e.SCHOOLID
   || :TAB || TO_CHAR( e.ENTRYDATE, 'MM/dd/yyyy' )
@@ -45,6 +47,7 @@ SELECT
   || :TAB || ''
   || :TAB || e.exitcode
   || :TAB || ''
+  
 --BEGIN additional data columns
 --Acceptable fields:
 --Students table.  Table alias name is 's'.  Custom fields can be pulled using: ps_customfields.getStudentsCF(s.id, 'FIELDNAME')

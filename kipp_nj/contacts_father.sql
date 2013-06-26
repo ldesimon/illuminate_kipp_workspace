@@ -1,3 +1,7 @@
+--prepped 6/26
+--TEAM does not store parent name last,first
+--will need to add guardian email and split text string
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -42,22 +46,22 @@ FROM DUAL
 --
 SELECT
              s.Student_Number
-  || :TAB || s.STATE_STUDENTNUMBER
+  || :TAB || NULL   
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
-  || :TAB || s.Middle_Name
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
-  || :TAB || SUBSTR (s.father, 1, INSTR(s.father, ',', 1, 1) -1)
-  || :TAB || SUBSTR (s.father, (INSTR(s.father, ',', 1, 1)+1))
-  || :TAB || s.Mailing_Street
+  || :TAB || SUBSTR (s.father, 1, INSTR(s.father,' ', 1, 1) -1)
+  || :TAB || SUBSTR (s.father, (INSTR(s.father,' ', 1)+1))
   || :TAB || s.Street
-  || :TAB || s.Mailing_City
-  || :TAB || s.Mailing_State
-  || :TAB || s.Mailing_Zip
+  || :TAB || s.Street
+  || :TAB || s.City
+  || :TAB || s.State
+  || :TAB || s.Zip
+  || :TAB ||  ps_customfields.getStudentsCF (s.id,'father_cell')
+  || :TAB || 'M'
   || :TAB ||  ps_customfields.getStudentsCF (s.id,'father_home_phone')
   || :TAB || 'H'
-  || :TAB ||  ps_customfields.getStudentsCF (s.id,'fatherdayphone')
-  || :TAB || 'D'
   || :TAB || 1
   || :TAB || 1
   || :TAB || 'Father'
@@ -67,6 +71,7 @@ SELECT
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''
+
 --BEGIN additional data columns
 --Acceptable fields:
 --Students table.  Table alias name is 's'.  Custom fields can be pulled using: ps_customfields.getStudentsCF(s.id, 'FIELDNAME')

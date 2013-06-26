@@ -42,22 +42,22 @@ FROM DUAL
 --
 SELECT
              s.Student_Number
-  || :TAB || s.STATE_STUDENTNUMBER
+  || :TAB || NULL   
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
-  || :TAB || s.Middle_Name
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
-  || :TAB || SUBSTR (s.mother, 1, INSTR(s.mother, ',', 1, 1) -1)
-  || :TAB || SUBSTR (s.mother, (INSTR(s.mother, ',', 1, 1)+1))
-  || :TAB || s.Mailing_Street
+  || :TAB || SUBSTR (s.mother, 1, INSTR(s.mother,' ', 1, 1) -1)
+  || :TAB || SUBSTR (s.mother, (INSTR(s.mother,' ', 1)+1))
   || :TAB || s.Street
-  || :TAB || s.Mailing_City
-  || :TAB || s.Mailing_State
-  || :TAB || s.Mailing_Zip
+  || :TAB || s.Street
+  || :TAB || s.City
+  || :TAB || s.State
+  || :TAB || s.Zip
+  || :TAB ||  ps_customfields.getStudentsCF (s.id,'mother_cell')
+  || :TAB || 'M'
   || :TAB ||  ps_customfields.getStudentsCF (s.id,'mother_home_phone')
   || :TAB || 'H'
-  || :TAB ||  ps_customfields.getStudentsCF (s.id,'motherdayphone')
-  || :TAB || 'D'
   || :TAB || 1
   || :TAB || 1
   || :TAB || 'Mother'
@@ -67,6 +67,7 @@ SELECT
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''
+
 --BEGIN additional data columns
 --Acceptable fields:
 --Students table.  Table alias name is 's'.  Custom fields can be pulled using: ps_customfields.getStudentsCF(s.id, 'FIELDNAME')

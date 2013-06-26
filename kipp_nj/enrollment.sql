@@ -33,7 +33,7 @@ FROM DUAL
 --
 SELECT
              s.Student_Number
-  || :TAB || ps_customfields.getStudentsCF(s.id, 'SID')
+  || :TAB || '' --not importing state ID (SID)
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
   || :TAB || ''

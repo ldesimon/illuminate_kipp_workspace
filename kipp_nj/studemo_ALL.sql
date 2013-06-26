@@ -1,3 +1,6 @@
+--prepped 6/26
+--removed most fields for initial import
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -73,45 +76,46 @@ FROM DUAL
 --
 SELECT
              s.Student_Number
-  || :TAB || s.STATE_STUDENTNUMBER
+  || :TAB || ''
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
-  || :TAB || s.Middle_Name
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
   || :TAB || s.GENDER
   || :TAB || (SELECT MIN(r.RACECD) FROM STUDENTRACE r WHERE s.ID = r.STUDENTID)
   || :TAB || ''
   || :TAB || ''
-  || :TAB || CASE ps_customfields.getStudentsCF (s.id,'CA_HispanicEthnicity') WHEN 'Y' THEN 1 ELSE 0 END
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_PrimaryLanguage')
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_PrimaryLanguage')
-  || :TAB || CASE ps_customfields.getStudentsCF (s.id,'CA_ELAStatus') WHEN 'EO' THEN 1 WHEN 'TBD' THEN 5 WHEN 'EL' THEN 3 WHEN 'IFEP' THEN 2 WHEN 'RFEP' THEN 4 END
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_DateRFEP')
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_PrimDisability')
+  || :TAB || CASE ps_customfields.getStudentsCF (s.id,'NULL') WHEN 'Y' THEN 1 ELSE 0 END
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || CASE ps_customfields.getStudentsCF (s.id,'NULL') WHEN 'EO' THEN 1 WHEN 'TBD' THEN 5 WHEN 'EL' THEN 3 WHEN 'IFEP' THEN 2 WHEN 'RFEP' THEN 4 END
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
   || :TAB || ''
   || :TAB || ''
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_FirstUSASchooling')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
   || :TAB || TO_CHAR( s.SCHOOLENTRYDATE, 'MM/dd/yyyy' )
   || :TAB || TO_CHAR( s.DISTRICTENTRYDATE, 'MM/dd/yyyy' )
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_ParentEd')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_BirthPlace_City')
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_BirthPlace_StateProvince')
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_BirthCountry')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
   || :TAB || ''
   || :TAB || '&IE_ACADEMIC_YEAR'
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_NamesSuffix')
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_AKASurname')
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_AKAFirst')
-  || :TAB || ps_customfields.getStudentsCF (s.id,'CA_AKAMiddle')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
+  || :TAB || ps_customfields.getStudentsCF (s.id,'NULL')
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''
+  || :TAB || S.ID
   || :TAB || ''
   || :TAB || ''
   || :TAB || ''

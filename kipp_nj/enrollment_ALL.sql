@@ -31,10 +31,10 @@ FROM DUAL
 --
 SELECT
              s.Student_Number
-  || :TAB || s.STATE_STUDENTNUMBER
+  || :TAB || NULL --not importing state ID (SID)
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
-  || :TAB || s.Middle_Name
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
   || :TAB || e.SCHOOLID
   || :TAB || TO_CHAR( e.ENTRYDATE, 'MM/dd/yyyy' )

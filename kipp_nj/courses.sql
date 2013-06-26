@@ -1,3 +1,7 @@
+--prepped 6/26
+--removed CA custom fields
+--will need to add course site id, grade levels later
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -55,13 +59,13 @@ SELECT DISTINCT
  || :TAB || ''
  || :TAB || ''
  || :TAB || ''
- || :TAB || ps_customfields.getCoursesCF (c.id,'CA_NCLBCoreCourse')
- || :TAB || ps_customfields.getCoursesCF (c.id,'CA_ContentCode')
- || :TAB || ps_customfields.getCoursesCF (c.id,'CA_EdServiceCode')
- || :TAB || ps_customfields.getCoursesCF (c.id,'CA_InstStrategy')
+ || :TAB || '' --ps_customfields.getCoursesCF (c.id,'CA_NCLBCoreCourse')
+ || :TAB || '' --ps_customfields.getCoursesCF (c.id,'CA_ContentCode')
+ || :TAB || '' --ps_customfields.getCoursesCF (c.id,'CA_EdServiceCode')
+ || :TAB || '' --ps_customfields.getCoursesCF (c.id,'CA_InstStrategy')
  || :TAB || ''
- || :TAB || ps_customfields.getCoursesCF (c.id,'CA_CTEProvider')
- || :TAB || ps_customfields.getCoursesCF (c.id,'CA_CTETechPrep')
+ || :TAB || '' --ps_customfields.getCoursesCF (c.id,'CA_CTEProvider')
+ || :TAB || '' --ps_customfields.getCoursesCF (c.id,'CA_CTETechPrep')
 --BEGIN additional data columns
 --Acceptable fields:
 --Courses table(c).  Custom course fields:  ps_customfields.getCoursesCF(c.id, 'FIELDNAME')

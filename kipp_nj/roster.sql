@@ -1,3 +1,5 @@
+--prepped 6/26
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -34,7 +36,7 @@ SELECT
   || :TAB || s.STATE_STUDENTNUMBER
   || :TAB || s.LAST_NAME
   || :TAB || s.FIRST_NAME
-  || :TAB || s.MIDDLE_NAME
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
   || :TAB || ABS(cc.SECTIONID)
   || :TAB || cc.SCHOOLID

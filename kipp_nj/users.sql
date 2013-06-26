@@ -1,3 +1,7 @@
+--prepped 6/26
+--need to review how PW/logins are managed with LDAP?
+--removed all custom fields
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -40,29 +44,29 @@ FROM DUAL
 -- Write teacher data.
 --
 SELECT DISTINCT
-			 t.ID
+             t.ID
   || :TAB || t.Last_Name
   || :TAB || t.First_Name
-  || :TAB || t.Middle_Name
-  || :TAB || ps_customfields.getTeachersCF (t.id,'dob')
-  || :TAB || upper(ps_customfields.getTeachersCF (t.id,'gender'))
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
   || :TAB || t.EMAIL_ADDR
+  || :TAB || t.teacherloginid
+  || :TAB || t.teacherloginpw
+  || :TAB || t.teachernumber
   || :TAB || ''
   || :TAB || ''
-  || :TAB || ps_customfields.getTeachersCF (t.id,'CA_SEID')
   || :TAB || ''
-  || :TAB || ps_customfields.getTeachersCF (t.id,'CA_FormerFirstName')
-  || :TAB || ps_customfields.getTeachersCF (t.id,'CA_FormerMiddleName')
-  || :TAB || ps_customfields.getTeachersCF (t.id,'CA_FormerLastName')
   || :TAB || ''
-  || :TAB || t.fedethnicity
-  || :TAB || t.street
-  || :TAB || t.city
-  || :TAB || t.state
-  || :TAB || t.zip
-  || :TAB || ps_customfields.getTeachersCF (t.id,'CA_PositionStatus')
-  || :TAB || ps_customfields.getTeachersCF (t.id,'CA_HighestDegree')
-  || :TAB || ps_customfields.getTeachersCF (t.id,'CA_DateofHire')
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
+  || :TAB || ''
   || :TAB || ''
   || :TAB || ''
 --BEGIN additional data columns
@@ -72,5 +76,6 @@ SELECT DISTINCT
 FROM
  (SELECT * FROM ps.teachers ORDER BY last_name, first_name) t
 JOIN ps.cc ON t.id = cc.teacherid
+WHERE t.status = 1 --active teachers only
 /
 SPOOL OFF

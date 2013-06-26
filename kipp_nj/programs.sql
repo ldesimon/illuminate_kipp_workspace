@@ -1,3 +1,7 @@
+--prepped 6/26
+--TEAM does not store program information
+--query is null
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -28,10 +32,10 @@ FROM DUAL
 --
 SELECT
              s.Student_Number
-  || :TAB || s.STATE_STUDENTNUMBER
+  || :TAB || ''
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
-  || :TAB || s.Middle_Name
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
   || :TAB || vir.USER_DEFINED_TEXT
   || :TAB || ''

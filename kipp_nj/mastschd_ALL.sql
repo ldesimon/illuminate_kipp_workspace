@@ -1,3 +1,5 @@
+--prepped 6/26
+--replaced period expression with section_number
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -34,7 +36,7 @@ SELECT DISTINCT
  || :TAB || CASE WHEN t.ABBREVIATION LIKE '%-%' THEN 'Y' ELSE t.ABBREVIATION END
  || :TAB || s.COURSE_NUMBER
  || :TAB || s.TEACHER
- || :TAB || s.EXPRESSION
+ || :TAB || s.section_number
  || :TAB || TO_CHAR(t.yearid + 1990)||'-'||TO_CHAR(t.yearid + 1991)
  || :TAB || s.room
  || :TAB || ''

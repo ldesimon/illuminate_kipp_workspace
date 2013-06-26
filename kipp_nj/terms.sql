@@ -1,3 +1,7 @@
+--prepped 6/26
+--no edits
+--need to look into PS term id vs illuminate term id
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON

@@ -1,3 +1,6 @@
+--prepped 6/26
+--no edits to stored grades fields
+
 SET HEADING OFF
 SET FEEDBACK OFF
 SET TRIMSPOOL ON
@@ -42,10 +45,10 @@ FROM DUAL
 --
 SELECT DISTINCT
              s.Student_Number
-  || :TAB || s.STATE_STUDENTNUMBER
+  || :TAB || ''
   || :TAB || s.Last_Name
   || :TAB || s.First_Name
-  || :TAB || s.Middle_Name
+  || :TAB || ''
   || :TAB || TO_CHAR( s.DOB, 'MM/dd/yyyy' )
   || :TAB || trn.course_number
   || :TAB || trn.course_name
